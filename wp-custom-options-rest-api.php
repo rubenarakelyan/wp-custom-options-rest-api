@@ -3,7 +3,7 @@
  * Plugin Name: WP Custom Options REST API
  * Plugin URI: https://github.com/rubenarakelyan/wp-custom-options-rest-api
  * Description: Expose custom options via the WordPress REST API.
- * Version: 1.0
+ * Version: 1.0.1
  * Author: Ruben Arakelyan
  * Author URI: https://www.wackomenace.co.uk
  */
@@ -59,6 +59,7 @@ function get_prefixed_custom_option($data) {
 add_action('rest_api_init', function () {
   register_rest_route('wp-custom-options-rest-api/v1', '/prefix/(?P<prefix>[a-zA-Z0-9_-]+)', array(
     'methods' => 'GET',
-    'callback' => 'get_prefixed_custom_option'
+    'callback' => 'get_prefixed_custom_option',
+    'permission_callback' => '__return_true'
   ));
 });
